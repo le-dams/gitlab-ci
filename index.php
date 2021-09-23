@@ -2,6 +2,7 @@
 
 require_once 'vendor/autoload.php';
 
+use GitLab\Command\CheckPipelinesCommand;
 use GitLab\Command\CreateTagCommand;
 use GitLab\Command\CreateVarCommand;
 use GitLab\Command\RemovePipelinesCommand;
@@ -53,10 +54,22 @@ switch ($action) {
         $message = $args['message'] ?? null;
 
         if (is_null($tag) || is_null($branch)) {
-            throw new Exception('Missing params value');
+            throw new Exception('Missing params tag and/or branch');
         }
 
         (new CreateTagCommand())->exec($gitlab, $branch, $tag, $message);
+
+        break;
+    case 'check-tag':
+        $args = getopt(null, ["tag:"]);
+
+        $tag = $args['tag'] ?? null;
+
+        if (is_null($tag)) {
+            throw new Exception('Missing params tag');
+        }
+
+        (new CheckPipelinesCommand())->exec($gitlab, $tag);
 
         break;
     default:

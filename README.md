@@ -30,6 +30,18 @@ Example:
 php index.php --action=create-tag --branch=orange/releases/2021.6 --tag=2021.6.0
 ```
 
+#### check-tag
+Used to check if pipelines are successfuly done with a target tag and of course on configure (```.env```) project(s).
+
+Params:
+1. ```action=check-tag``` - Mandatory
+2. ```tag=TAG_NAME``` - Mandatory
+
+Example:
+```
+php index.php --action=check-tag --tag=2021.6.0
+```
+
 #### create-var
 Used to create new CI variable on configure (```.env```) project(s).
 
