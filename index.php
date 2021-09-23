@@ -5,6 +5,7 @@ require_once 'vendor/autoload.php';
 use GitLab\Command\CheckPipelinesCommand;
 use GitLab\Command\CreateTagCommand;
 use GitLab\Command\CreateVarCommand;
+use GitLab\Command\DeleteVarCommand;
 use GitLab\Command\RemovePipelinesCommand;
 use Gitlab\Command\RemoveTagCommand;
 use GitLab\GitLab;
@@ -44,6 +45,19 @@ switch ($action) {
         }
 
         (new CreateVarCommand())->exec($gitlab, $key, $value, $env);
+
+        break;
+    case 'delete-var':
+        $args = getopt(null, ["key:", "env:"]);
+
+        $key = $args['key'] ?? null;
+        $env = $args['env'] ?? null;
+
+        if (is_null($key)) {
+            throw new Exception('Missing params key');
+        }
+
+        (new DeleteVarCommand())->exec($gitlab, $key, $env);
 
         break;
     case 'create-tag':

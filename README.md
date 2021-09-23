@@ -55,3 +55,16 @@ Example:
 ```
 php index.php --action=create-var --key=CHARTS_VERSION --value=2021.4.0 --env=staging1
 ```
+
+#### delete-var
+Used to delete a CI variable on configure (```.env```) project(s).
+
+Params:
+1. ```action=delete-var``` - Mandatory
+2. ```key=VAR_NAME``` - Mandatory
+4. ```env=ENV_NAME``` - Non Mandatory
+
+Example:
+```
+php index.php --action=delete-var --key=CHARTS_VERSION --env=staging1
+```
