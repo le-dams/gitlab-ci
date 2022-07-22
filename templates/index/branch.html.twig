@@ -1,0 +1,48 @@
+{% extends 'header.html.twig' %}
+
+{% block content %}
+    <!-- Begin page content -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th rowspan="2">ID</th>
+                                <th rowspan="2">Project</th>
+                                <th rowspan="2">Branch</th>
+                                <th rowspan="2">Merge Request</th>
+                                <th colspan="3">Commit</th>
+                            </tr>
+                            <tr>
+                                <th>Hash</th>
+                                <th>User</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for repository in repositories %}
+                            <tr>
+                                <td>{{ repository.id }}</td>
+                                <td>{{ repository.name }}</td>
+                                <td>{{ repository.branch }}</td>
+                                <td>
+                                    {% if repository.merge_requests | length > 0 %}
+                                    {{ repository.merge_requests | length }}
+                                    {% else %}
+                                        -
+                                    {% endif %}
+                                </td>
+                                <td>{{ repository.commit.short_id }}</td>
+                                <td><a href="mailto:{{ repository.commit.committer.email }}">{{ repository.commit.committer.name }}</a></td>
+                                <td>{{ repository.commit.created_at }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

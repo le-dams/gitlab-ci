@@ -1,0 +1,42 @@
+{% extends 'header.html.twig' %}
+
+{% block content %}
+    <!-- Begin page content -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th rowspan="2">ID</th>
+                                <th rowspan="2">Project</th>
+                                <th rowspan="2">Tag</th>
+                                <th rowspan="2">Pipeline</th>
+                                <th colspan="3">Commit</th>
+                            </tr>
+                            <tr>
+                                <th>Hash</th>
+                                <th>User</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for project in projects %}
+                            <tr>
+                                <td>{{ project.id }}</td>
+                                <td>{{ project.name }}</td>
+                                <td>{% if project.tag %}{{ project.tag.name }}{% endif %}</td>
+                                <td>{% if project.tag and project.tag.pipeline is defined %}{{ project.tag.pipeline.id }}{% endif %}</td>
+                                <td>{% if project.tag and project.tag.commit %}{{ project.tag.commit.short_id }}{% endif %}</td>
+                                <td>{% if project.tag and project.tag.commit %}<a href="mailto:{{ project.tag.commit.committer.email }}">{{ project.tag.commit.committer.name }}</a>{% endif %}</td>
+                                <td>{% if project.tag and project.tag.commit %}{{ project.tag.commit.created_at }}{% endif %}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

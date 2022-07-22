@@ -27,7 +27,7 @@ Params:
 
 Example:
 ```
-php index.php --action=create-tag --branch=orange/releases/2021.6 --tag=2021.6.0
+php command.php --action=create-tag --branch=orange/releases/2021.6 --tag=2021.6.0
 ```
 
 #### check-tag
@@ -39,7 +39,7 @@ Params:
 
 Example:
 ```
-php index.php --action=check-tag --tag=2021.6.0
+php command.php --action=check-tag --tag=2021.6.0
 ```
 
 #### create-var
@@ -53,7 +53,7 @@ Params:
 
 Example:
 ```
-php index.php --action=create-var --key=CHARTS_VERSION --value=2021.4.0 --env=staging1
+php command.php --action=create-var --key=CHARTS_VERSION --value=2021.4.0 --env=staging1
 ```
 
 #### delete-var
@@ -66,5 +66,5 @@ Params:
 
 Example:
 ```
-php index.php --action=delete-var --key=CHARTS_VERSION --env=staging1
+php command.php --action=delete-var --key=CHARTS_VERSION --env=staging1
 ```

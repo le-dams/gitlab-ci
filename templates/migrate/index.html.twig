@@ -1,0 +1,55 @@
+{% extends 'header.html.twig' %}
+
+{% block content %}
+
+    <!-- Begin page content -->
+    <div class="container">
+        <div class="page-header" style="border: none !important">
+            <!-- <h1>Select a database:</h1>  -->
+        </div>
+
+
+        <div class="row">
+
+            <div class="col-md-12"></div>
+            <div class="col-md-12">
+                <form role="form" method="get">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Migrate on <b>{{ env }}</b></div>
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label for="form_select_app">Select a application:</label>
+                                <select id="form_select_app" name="app" class="form-control">
+                                    <option value="">Select an application</option>
+                                    {% for app in apps %}
+                                        <option value="{{ app.value }}" {% if current_app == app.value%}selected{% endif %}>{{ app.label }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="panel-footer"><button type="submit" class="btn btn-default btn-lg">Submit</button></div>
+                    </div>
+                </form>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">Result</div>
+                    <div class="panel-body">
+                            Output files
+                            <hr />
+                            <ul>
+                            {% for file in result %}
+                                <li><a href="/view?filepath={{ file }}" target="_alt" role="button">{{ file }}</a></li>
+                            {% else %}
+                                <li>No result</li>
+                            {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-12"></div>
+        </div>
+
+    </div>
+{% endblock %}

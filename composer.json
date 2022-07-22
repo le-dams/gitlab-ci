@@ -9,7 +9,11 @@
         "guzzlehttp/guzzle": "*",
         "symfony/dotenv": "^5.3",
         "symfony/var-dumper": "^5.3",
-        "symfony/console": "^5.3"
+        "symfony/console": "^5.3",
+        "ext-pdo": "*",
+        "twig/twig": "^1.37",
+        "silex/silex": "^2.2",
+        "ext-curl": "*"
     },
     "autoload": {
         "psr-4": {"GitLab\\": "src/"}
